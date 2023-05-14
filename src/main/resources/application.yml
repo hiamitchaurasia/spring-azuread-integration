@@ -1,0 +1,31 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: first-service
+  security:
+    oauth2:
+      client:
+        provider:
+          azure:
+            issuer-uri: https://login.microsoftonline.com/e9365ebb-fc06-4370-b699-2ead866fbee0/v2.0
+            user-name-attribute: name
+        registration:
+          azure-dev:
+            provider: azure
+            client-id: 232a
+            client-secret: 5V
+            scope:
+              - openid
+              - email
+              - profile
+logging:
+  level:
+    web: DEBUG
+# Group mapping
+this-app:
+  jwt:
+    authorization:
+      group-to-authorities:
+        "32279043-48aa-4a1d-b7dc-03493d17fdf1": CUSTOM_ROLE_READ
+        "77a42aff-370d-40a2-bb63-470b9088070a": CUSTOM_ROLE_READ,CUSTOM_ROLE_WRITE
